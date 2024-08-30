@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name '.wage-monster-app' is invalid and this project uses 'wagemonsterapp' instead.
+* The original package name '.wage-monster-app' is invalid and this project uses 'biocueingapp' instead.
 
 # Getting Started
 
