@@ -1,7 +1,6 @@
 package biocueingapp.controllers.clientController;
 
 import biocueingapp.model.Client;
-import biocueingapp.model.ClientInfo;
 import biocueingapp.model.MedicalInfo;
 import biocueingapp.service.clientService.MedicalInfoService;
 import lombok.RequiredArgsConstructor;

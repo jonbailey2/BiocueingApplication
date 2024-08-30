@@ -1,7 +1,5 @@
 package biocueingapp.controllers.clientController;
 
-import biocueingapp.service.clientService.ClientInfoService;
-import biocueingapp.service.clientService.DevelopmentalInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import biocueingapp.model.*;
 import biocueingapp.service.clientService.ClientService;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
