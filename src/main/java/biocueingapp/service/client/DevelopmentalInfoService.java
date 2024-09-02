@@ -1,7 +1,7 @@
-package biocueingapp.service.clientService;
+package biocueingapp.service.client;
 
-import biocueingapp.model.Client;
-import biocueingapp.model.DevelopmentalInfo;
+import biocueingapp.model.client.Client;
+import biocueingapp.model.client.DevelopmentalInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package biocueingapp.model;
+package biocueingapp.model.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DevelopmentalInfo {
-    private List<String> milestonesAchieved;
+public class EmergencyInfo {
+    private String emergencyContact;
 
-    private List<String> areasForDevelopment;
+    private List<String> emergencyContactInfo;
 }

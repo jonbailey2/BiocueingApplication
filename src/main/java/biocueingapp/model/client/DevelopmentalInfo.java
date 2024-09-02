@@ -1,4 +1,4 @@
-package biocueingapp.model;
+package biocueingapp.model.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +11,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientInfo {
-    private String name;
-    private String gender;
-    private List<String> contactInfo;
-    private int age;
+public class DevelopmentalInfo {
+    private List<String> milestonesAchieved;
+
+    private List<String> areasForDevelopment;
 }

@@ -1,4 +1,4 @@
-package biocueingapp.model;
+package biocueingapp.model.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

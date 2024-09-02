@@ -1,11 +1,11 @@
-package biocueingapp.controllers.clientController;
+package biocueingapp.controller.client;
 
+import biocueingapp.model.client.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import biocueingapp.model.*;
-import biocueingapp.service.clientService.ClientService;
+import biocueingapp.service.client.ClientService;
 
 import java.util.UUID;
 

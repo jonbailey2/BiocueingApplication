@@ -1,8 +1,8 @@
-package biocueingapp.controllers.clientController;
+package biocueingapp.controller.client;
 
-import biocueingapp.model.Client;
-import biocueingapp.model.ClientInfo;
-import biocueingapp.service.clientService.ClientInfoService;
+import biocueingapp.model.client.Client;
+import biocueingapp.model.client.ClientInfo;
+import biocueingapp.service.client.ClientInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
