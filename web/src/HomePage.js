@@ -1,50 +1,47 @@
 import React, { useState } from 'react';
 
-import { LaptopOutlined, NotificationOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
+import { CalendarOutlined, MailOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Button } from 'antd';
 import { Typography } from 'antd';
 
-import ClientPage from './user/ClientPage'
+import ClientPage from './user/ClientPage';
+import CalendarPage from './pages/CalendarPage';
+import NotificationsPage from './pages/NotificationsPage';
 
 import { createMedicalInfo } from './api/Client.js'
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-const { Header, Content, Footer } = Layout;
+const { Header, Content, Sider, Footer } = Layout;
 
-const siderNavItem = ['Home', 'Client'];
-
-const items = [HomeOutlined, UserOutlined].map(
-  (icon, index) => ({
-    key: String(index + 1),
-    icon: React.createElement(icon),
-    label: siderNavItem[index],
-  }),
-);
+const siderItems = [
+    { key: '0', icon: <HomeOutlined />, label: 'Home' },
+    { key: '1', icon: <UserOutlined />, label: 'Clients' },
+    { key: '2', icon: <CalendarOutlined />, label: 'Calendar' },
+    { key: '3', icon: <MailOutlined />, label: 'Notifications' },
+];
 
 const HomePage = () => {
+  const [selectedPage, setSelectedPage] = useState('0');
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const handleMenuClick = (e) => {
+    setSelectedPage(e.key);
+  };
+
   return (
-    <Layout>
-      <Header
-        style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 1,
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
+  <Layout>
+    <Sider width={200} >
       <Menu
         theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['1']}
-        items={items}
-        style={{ flex: 1, minWidth: 0 }}
+        mode="inline"
+        items={siderItems}
+        onClick={handleMenuClick}
+        style={{ borderRight: 0, height: '100vh', marginTop: '4vh', position: 'sticky'}}
       />
-      </Header>
+    </Sider>
     <Layout>
       <Content
         style={{
@@ -54,13 +51,16 @@ const HomePage = () => {
         <div
           style={{
             padding: 24,
-            minHeight: 600,
+            minHeight: '90vh',
             marginTop: 30,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
         >
-          <ClientPage />
+          {selectedPage === '0' && <div>Home Page Here!</div>}
+          {selectedPage === '1' && <ClientPage />}
+          {selectedPage === '2' && <CalendarPage />}
+          {selectedPage === '3' && <NotificationsPage />}
         </div>
       </Content>
       <Footer

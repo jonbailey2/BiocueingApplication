@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ClientCard from "./ClientCard";
-import { Divider, Carousel, Row, Col } from 'antd';
+import { Divider, Carousel, Row, Col, Input, Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import AddClient from './AddClient';
+
+import '../style/ClientCard.css';
+
+const { Search } = Input;
 
 const clients = [
     { id: 1, name: 'John Doe', age: 32, nextSession: '2024-08-10',
@@ -44,18 +50,66 @@ const chunkArray = (arr, size) => {
 
 const ClientPage = () => {
     const clientRows = chunkArray(clients, 3);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isCreateClientOpen, setIsCreateClientOpen] = useState(false);
+
+    const showCreateNewClient = () => {
+        setIsCreateClientOpen(true);
+    };
+
+    const hideCreateNewClient = () => {
+        setIsCreateClientOpen(false);
+    };
+
+    const onSearch = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const filteredClients = clients.filter( (client) =>
+        client.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    useEffect(() => {
+
+    }, [searchQuery]);
 
     return (
-        <div className="client-list">
-          {clientRows.map((row, rowIndex) => (
-            <Row gutter={16}>
-              {row.map( (client) => (
-                <Col span={8}>
-                  <ClientCard key={client.id} client={client} />
-                </Col>
-                ))}
-          </Row>
-          ))}
+        <div className="client-list" style={{paddingLeft:30}}>
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10}}>
+            <Search
+              placeholder="Enter name"
+              onChange={onSearch}
+              allowClear
+              enterButton="Search"
+              size="large"
+              style={{
+                width: 400,
+              }}
+            />
+             <Button type="primary" shape="round" icon={<PlusOutlined />}
+                size="large" style={{marginRight:60}} onClick={showCreateNewClient}>
+                Add Client
+             </Button>
+          </div>
+          {isCreateClientOpen &&
+            <div className="modal-overlay">
+                <div className="modal-card">
+                    <AddClient isCreateClientOpen={isCreateClientOpen} setIsCreateClientOpen={setIsCreateClientOpen} />
+                </div>
+            </div>
+          }
+          {!isCreateClientOpen && filteredClients.length > 0 ? (
+            chunkArray(filteredClients, 3).map((row, rowIndex) => (
+              <Row gutter={16}>
+                {row.map( (client) => (
+                  <Col span={8}>
+                    <ClientCard key={client.id} client={client} />
+                  </Col>
+                  ))}
+              </Row>
+            ))) : (
+              <div> no matches  </div>
+            )}
         </div>
     );
 };
