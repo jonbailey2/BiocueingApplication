@@ -1,105 +1,75 @@
 import React, { useState } from 'react';
 
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
-import moneyMonster from '/Users/jonbailey/Repositories/Wage Monster/web/src/images/money_monster.png'
-import skyline from '/Users/jonbailey/Repositories/Wage Monster/web/src/images/skyline.png'
-import { Typography} from 'antd';
-import UpdateProfile from './user/UpdateProfile.js'
+import { LaptopOutlined, NotificationOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import { Typography } from 'antd';
 
-const { Header, Content, Sider } = Layout;
-const { Title } = Typography;
-const items1 = ['1', '2', '3'].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
-const categories = ['<User Name>', 'Companies', 'Announcements']
-const options = ['Log Payment', 'History', 'Update Profile','Your Companies', 'Hiring Near You', 'Risers','Search', 'For You', 'Top of the Week']
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-  const key = String(index);
-  return {
-    key: `sub${key}`,
+import ClientPage from './user/ClientPage'
+
+import { createMedicalInfo } from './api/Client.js'
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
+const { Header, Content, Footer } = Layout;
+
+const siderNavItem = ['Home', 'Client'];
+
+const items = [HomeOutlined, UserOutlined].map(
+  (icon, index) => ({
+    key: String(index + 1),
     icon: React.createElement(icon),
-    label: categories[key],
-    children: new Array(3).fill(null).map((_, j) => {
-      const subKey = index * 3 + j;
-      return {
-        key: subKey,
-        label: options[subKey],
-      };
-    }),
-  };
-});
+    label: siderNavItem[index],
+  }),
+);
 
 const HomePage = () => {
-    const testUser = {
-        username: 'testUsername',
-        name: 'Maria Bailey',
-        dateOfBirth: '2003-07-27',
-        companies: ['Rock Bottom', 'Outback'],
-    };
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
 
-    const [user, setUser] = useState(testUser);
-
-    const handleSave = (updatedUser) => {
-        setUser(updatedUser);
-        console.log('User saved:', updatedUser);
-    };
-
-    const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
   return (
     <Layout>
       <Header
         style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          width: '100%',
           display: 'flex',
           alignItems: 'center',
-          height: '80px',
         }}
       >
-        <img src = {moneyMonster} alt = "NYC" style = {{height: '150%', width:'auto'}}/>
-        <Title style = {{color: 'white', margin: 'auto'}}>Wage Monster</Title>
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={['1']}
+        items={items}
+        style={{ flex: 1, minWidth: 0 }}
+      />
       </Header>
-
-      <Layout>
-        <Sider
-          width={200}
+    <Layout>
+      <Content
+        style={{
+          padding: '0 48px',
+        }}
+      >
+        <div
           style={{
+            padding: 24,
+            minHeight: 600,
+            marginTop: 30,
             background: colorBgContainer,
+            borderRadius: borderRadiusLG,
           }}
         >
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            theme='dark'
-            triggerSubMenuAction='click'
-            style={{
-              height: '100vh',
-              borderRight: 0,
-            }}
-            items={items2}
-          />
-        </Sider>
-
-        <Layout
-          style={{
-            padding: '0 24px 24px',
-          }}
-        >
-          <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            <UpdateProfile user={testUser} onSave={handleSave}/>
-          </Content>
-        </Layout>
+          <ClientPage />
+        </div>
+      </Content>
+      <Footer
+        style={{
+          textAlign: 'center',
+        }}
+      >
+         {new Date().getFullYear()} Created by Jon Bailey
+      </Footer>
       </Layout>
     </Layout>
   );
