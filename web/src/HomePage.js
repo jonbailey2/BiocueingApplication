@@ -5,9 +5,10 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Button } from 'antd';
 import { Typography } from 'antd';
 
+import WelcomePage from './components/WelcomePage';
 import ClientPage from './user/ClientPage';
-import CalendarPage from './pages/CalendarPage';
-import NotificationsPage from './pages/NotificationsPage';
+import CalendarPage from './components/CalendarPage';
+import NotificationsPage from './components/NotificationsPage';
 
 import { createMedicalInfo } from './api/Client.js'
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -57,7 +58,7 @@ const HomePage = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          {selectedPage === '0' && <div>Home Page Here!</div>}
+          {selectedPage === '0' && <WelcomePage />}
           {selectedPage === '1' && <ClientPage />}
           {selectedPage === '2' && <CalendarPage />}
           {selectedPage === '3' && <NotificationsPage />}

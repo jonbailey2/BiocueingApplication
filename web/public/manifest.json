@@ -1,7 +1,12 @@
 {
-  "short_name": "React App",
+  "short_name": "MoodSync",
   "name": "Create React App Sample",
   "icons": [
+    {
+      "src": "app_logo.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
