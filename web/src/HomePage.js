@@ -69,7 +69,10 @@ const HomePage = () => {
           textAlign: 'center',
         }}
       >
-         {new Date().getFullYear()} Created by Jon Bailey
+        <div style={{ textAlign: 'center' }}>
+            BioCue ©2025 | Empowering Psychiatry with Biometric Insights
+        </div>
+       {new Date().getFullYear()} Created by Jon Bailey
       </Footer>
       </Layout>
     </Layout>
