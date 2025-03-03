@@ -3,7 +3,6 @@ import './App.css';
 import HomePage from './HomePage.js';
 
 import { Button } from "antd";
-import { getDadJokes } from "./api/Client.js";
 
 class App extends Component {
 
